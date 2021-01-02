@@ -53,9 +53,9 @@ app.post("/", (req, res)=>{
         else
         {
             res.sendFile(__dirname+"/failure.html");
-       response.on("data", function(data){
-            console.log(JSON.parse(data));
-        })
+    //    response.on("data", function(data){
+    //         console.log(JSON.parse(data));
+    //     })
     }
     })
     console.log(firstName, lastName, email );
