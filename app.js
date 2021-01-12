@@ -1,4 +1,4 @@
-
+require("dotenv").config();
 const express = require("express");
 const request = require("request");
 const bodyParser = require("body-parser");
@@ -35,15 +35,16 @@ app.post("/", (req, res)=>{
 
     const jsonData = JSON.stringify(data);
 
-    const url = "https://us7.api.mailchimp.com/3.0/lists/adcc40df40";
+    
+    
 
     const options = {
         method: "POST",
-        auth : "utkarsh:a94696d91932fb733fa1d8d33790d943-us7"
+        auth : process.env.AUTH
     }
 
 
-    const request = https.request(url, options, function(response){
+    const request = https.request(process.env.URL, options, function(response){
 
 
         if(response.statusCode === 200)
@@ -53,9 +54,9 @@ app.post("/", (req, res)=>{
         else
         {
             res.sendFile(__dirname+"/failure.html");
-    //    response.on("data", function(data){
-    //         console.log(JSON.parse(data));
-    //     })
+       response.on("data", function(data){
+            console.log(JSON.parse(data));
+        })
     }
     })
     console.log(firstName, lastName, email );
@@ -82,7 +83,3 @@ app.listen(process.env.PORT || 3000,() =>{
 })
 
 
-// a94696d91932fb733fa1d8d33790d943-us7
-
-// list id
-// adcc40df40
